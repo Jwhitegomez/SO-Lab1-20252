@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 void unzip_file(char *filename);
-void write_chars(int count, char character, FILE *fp);
+void write_chars(FILE *fp);
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -24,15 +24,15 @@ void unzip_file(char *filename) {
         exit(1);
     }
 
-    int count;
-    char character;
-
-    write_chars(count, character, fp);
+    write_chars(fp);
 
     fclose(fp);
 }
 
-void write_chars(int count, char character, FILE *fp) {
+void write_chars(FILE *fp) {
+    int count;
+    char character;
+    
     while (fread(&count, sizeof(int), 1, fp) == 1 &&
             fread(&character, sizeof(char), 1, fp) == 1) { //Mientras se pueda leer un bloque de 4 bytes (un entero) y 1 byte (un carácter)
         for (int j = 0; j < count; j++) {
