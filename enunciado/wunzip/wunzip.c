@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void unzip_file(char *filename);
+int unzip_file(char *filename);
 void write_chars(FILE *fp);
 
 int main(int argc, char *argv[]) {
@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-void unzip_file(char *filename) {
+int unzip_file(char *filename) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("wunzip: cannot open file\n");
