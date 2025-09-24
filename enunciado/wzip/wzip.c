@@ -19,7 +19,7 @@ int compress_file(const char *filename, int *currentChar, int *count) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("wzip: cannot open file\n");
-        exit(1);
+        return 1;
     }
 
     int nextChar;
@@ -40,13 +40,13 @@ int compress_file(const char *filename, int *currentChar, int *count) {
     }
 
     fclose(fp);
-    exit(0);
+    return 0;
 }
 
 int main(int argc, char *argv[]) {
     if (argc == 1) {
         print_usage();
-        exit(1);
+        return 1;
     }
 
     int currentChar = EOF;
@@ -54,12 +54,12 @@ int main(int argc, char *argv[]) {
 
     for (int i = 1; i < argc; i++) {
         if (compress_file(argv[i], &currentChar, &count)) {
-            exit(1); // error en abrir archivo
+            return 1; // error en abrir archivo
         }
     }
 
     // Al final, escribir lo pendiente
     flush_sequence(count, currentChar);
 
-    exit(0);
+    return 0;
 }
