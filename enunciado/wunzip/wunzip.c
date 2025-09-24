@@ -25,8 +25,8 @@ int unzip_file(char *filename) {
     }
 
     write_chars(fp);
-
     fclose(fp);
+    return 0;
 }
 
 void write_chars(FILE *fp) {
