@@ -7,21 +7,21 @@ void write_chars(FILE *fp);
 int main(int argc, char *argv[]) {
     if (argc < 2) {
         printf("wunzip: file1 [file2 ...]\n");
-        exit(1);
+        return 1;
     }
 
     for (int i = 1; i < argc; i++) {
         unzip_file(argv[i]);
     }
 
-    exit(0);
+    return 0;
 }
 
 void unzip_file(char *filename) {
     FILE *fp = fopen(filename, "r");
     if (fp == NULL) {
         printf("wunzip: cannot open file\n");
-        exit(1);
+        return 1;
     }
 
     write_chars(fp);
